@@ -2,11 +2,17 @@
 
 ## Build
 colcon build --symlink-install --merge-install
+
 source /opt/ros/humble/setup.bash
+
 source install/setup.bash
 
+
+
 export AMENT_PREFIX_PATH="$AMENT_PREFIX_PATH:$HOME/tb3_explore/install"
+
 export COLCON_PREFIX_PATH="$HOME/tb3_explore/install"
+
 ros2 pkg prefix tb3_sim_bundle ## ~/home/$USER/tb3_explore/install 뜨면 성공!
 
 ## Run (SLAM + Nav2 + Frontier Explore)
