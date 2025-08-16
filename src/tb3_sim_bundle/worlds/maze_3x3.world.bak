@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="maze_3x3">
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!-- Gazebo ROS factory plugin: spawn_entity.py 사용 위해 필요 -->
+    <plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so"/>
+
+    <!-- 경기장 바닥 표시용 3x3m plane (시각 구분) -->
+    <model name="floor">
+      <static>true</static>
+      <link name="link">
+        <visual name="vis">
+          <geometry>
+            <box><size>3 3 0.01</size></box>
+          </geometry>
+          <material>
+            <ambient>0.95 0.95 0.95 1</ambient>
+            <diffuse>0.95 0.95 0.95 1</diffuse>
+          </material>
+        </visual>
+        <pose>1.5 1.5 0.005 0 0 0</pose>
+      </link>
+    </model>
+
+    <!-- 외벽 (두께 0.05m, 높이 0.25m) -->
+    <model name="wall_west">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.05 3 0.25</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.05 3 0.25</size></box></geometry>
+          <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <pose>0.0 1.5 0.125 0 0 0</pose>
+      </link>
+    </model>
+    <model name="wall_east">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.05 3 0.25</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.05 3 0.25</size></box></geometry>
+          <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <pose>3.0 1.5 0.125 0 0 0</pose>
+      </link>
+    </model>
+    <model name="wall_south">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>3 0.05 0.25</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>3 0.05 0.25</size></box></geometry>
+          <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <pose>1.5 0.0 0.125 0 0 0</pose>
+      </link>
+    </model>
+    <model name="wall_north">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>3 0.05 0.25</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>3 0.05 0.25</size></box></geometry>
+          <material><ambient>1 1 1 1</ambient><diffuse>1 1 1 1</diffuse></material>
+        </visual>
+        <pose>1.5 3.0 0.125 0 0 0</pose>
+      </link>
+    </model>
+
+    <!-- 장애물 25x25x25cm -->
+    <model name="box1">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.25 0.25 0.25</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.25 0.25 0.25</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+        <pose>0.75 0.75 0.125 0 0 0</pose>
+      </link>
+    </model>
+    <model name="box2">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.25 0.25 0.25</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.25 0.25 0.25</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+        <pose>2.25 1.50 0.125 0 0 0</pose>
+      </link>
+    </model>
+    <model name="box3">
+      <static>true</static>
+      <link name="link">
+        <collision name="col"><geometry><box><size>0.25 0.25 0.25</size></box></geometry></collision>
+        <visual name="vis"><geometry><box><size>0.25 0.25 0.25</size></box></geometry>
+          <material><ambient>0.8 0.8 0.8 1</ambient><diffuse>0.8 0.8 0.8 1</diffuse></material>
+        </visual>
+        <pose>1.20 2.25 0.125 0 0 0</pose>
+      </link>
+    </model>
+  </world>
+</sdf>
+
+<plugin name="gazebo_ros_init" filename="libgazebo_ros_init.so"/>
+<plugin name="gazebo_ros_factory" filename="libgazebo_ros_factory.so"/>
+<plugin name="gazebo_ros_paths" filename="libgazebo_ros_paths_plugin.so"/>

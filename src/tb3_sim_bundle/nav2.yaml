@@ -1,0 +1,14 @@
+planner_server:
+  ros__parameters:
+    planner_plugins: [GridBased]
+    GridBased:
+      plugin: nav2_navfn_planner/NavfnPlanner
+      allow_unknown: true
+      tolerance: 0.8
+      use_astar: true
+
+global_costmap:
+  global_costmap:
+    ros__parameters:
+      track_unknown_space: true
+      subscribe_to_updates: true

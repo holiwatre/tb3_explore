@@ -1,0 +1,8 @@
+image: ~/.ros/tb3_sim_maps/maze_3x3.pgm
+mode: trinary
+resolution: 0.03
+origin: [0.0, 0.0, 0.0]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+

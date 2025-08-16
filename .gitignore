@@ -1,0 +1,22 @@
+# ROS 2 / colcon
+build/
+install/
+log/
+.colcon*/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Generated maps (keep YAMLs)
+*.pgm
+*.bt
+
+# Keep source assets
+!src/**/worlds/**/*
+!src/**/maps/*.yaml
