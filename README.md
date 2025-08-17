@@ -15,9 +15,9 @@ source install/setup.bash
 ros2 pkg prefix tb3_sim_bundle ## ~/home/$USER/tb3_explore/install 뜨면 성공! 만약 이 경로가 안 뜰 시 밑의 export 2줄 실행해서 강제 경로 설정
 
 
-# export AMENT_PREFIX_PATH="$AMENT_PREFIX_PATH:$HOME/tb3_explore/install"
+export AMENT_PREFIX_PATH="$AMENT_PREFIX_PATH:$HOME/tb3_explore/install"
 
-# export COLCON_PREFIX_PATH="$HOME/tb3_explore/install"
+export COLCON_PREFIX_PATH="$HOME/tb3_explore/install"
 
 
 
