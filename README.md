@@ -2,6 +2,8 @@
 v1.2.0 구동 영상
 https://youtu.be/QOwtcc62ebA
 
+최신 release v1.2.0
+
 ## Requirements
 sudo apt install ros-humble-gazebo-ros-pkgs
 
