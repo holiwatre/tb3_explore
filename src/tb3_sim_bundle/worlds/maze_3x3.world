@@ -6,9 +6,9 @@
     <model name="floor">
       <static>true</static>
       <link name="link">
-        <pose>1.500000 1.500000 0.005 0 0 0</pose>
+        <pose>2.400000 2.400000 0.005 0 0 0</pose>
         <visual name="vis">
-          <geometry><box><size>3.000000 3.000000 0.01</size></box></geometry>
+          <geometry><box><size>4.800000 4.800000 0.01</size></box></geometry>
           <material><ambient>0.95 0.95 0.95 1</ambient><diffuse>0.95 0.95 0.95 1</diffuse></material>
         </visual>
       </link>
@@ -16,10 +16,10 @@
     <model name="wall_west">
       <static>true</static>
       <link name="link">
-        <pose>-0.025000 1.500000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.050000 3.100000 0.250000</size></box></geometry></collision>
+        <pose>-0.025000 2.400000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.050000 4.900000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.050000 3.100000 0.250000</size></box></geometry>
+          <geometry><box><size>0.050000 4.900000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -27,10 +27,10 @@
     <model name="wall_east">
       <static>true</static>
       <link name="link">
-        <pose>3.025000 1.500000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.050000 3.100000 0.250000</size></box></geometry></collision>
+        <pose>4.825000 2.400000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.050000 4.900000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.050000 3.100000 0.250000</size></box></geometry>
+          <geometry><box><size>0.050000 4.900000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -38,10 +38,10 @@
     <model name="wall_south">
       <static>true</static>
       <link name="link">
-        <pose>1.500000 -0.025000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>3.100000 0.050000 0.250000</size></box></geometry></collision>
+        <pose>2.400000 -0.025000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>4.900000 0.050000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>3.100000 0.050000 0.250000</size></box></geometry>
+          <geometry><box><size>4.900000 0.050000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -49,10 +49,10 @@
     <model name="wall_north">
       <static>true</static>
       <link name="link">
-        <pose>1.500000 3.025000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>3.100000 0.050000 0.250000</size></box></geometry></collision>
+        <pose>2.400000 4.825000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>4.900000 0.050000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>3.100000 0.050000 0.250000</size></box></geometry>
+          <geometry><box><size>4.900000 0.050000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -60,10 +60,10 @@
     <model name="cell_10_1">
       <static>true</static>
       <link name="link">
-        <pose>0.375000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>0.600000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -71,10 +71,10 @@
     <model name="cell_10_2">
       <static>true</static>
       <link name="link">
-        <pose>0.625000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.000000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -82,10 +82,10 @@
     <model name="cell_10_3">
       <static>true</static>
       <link name="link">
-        <pose>0.875000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.400000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -93,10 +93,10 @@
     <model name="cell_10_4">
       <static>true</static>
       <link name="link">
-        <pose>1.125000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.800000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -104,10 +104,10 @@
     <model name="cell_10_5">
       <static>true</static>
       <link name="link">
-        <pose>1.375000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>2.200000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -115,10 +115,10 @@
     <model name="cell_10_6">
       <static>true</static>
       <link name="link">
-        <pose>1.625000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>2.600000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -126,10 +126,10 @@
     <model name="cell_10_7">
       <static>true</static>
       <link name="link">
-        <pose>1.875000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.000000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -137,10 +137,10 @@
     <model name="cell_10_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -148,10 +148,10 @@
     <model name="cell_10_9">
       <static>true</static>
       <link name="link">
-        <pose>2.375000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.800000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -159,10 +159,10 @@
     <model name="cell_10_10">
       <static>true</static>
       <link name="link">
-        <pose>2.625000 2.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>4.200000 4.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -170,10 +170,10 @@
     <model name="cell_9_1">
       <static>true</static>
       <link name="link">
-        <pose>0.375000 2.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>0.600000 3.800000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -181,10 +181,10 @@
     <model name="cell_9_3">
       <static>true</static>
       <link name="link">
-        <pose>0.875000 2.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.400000 3.800000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -192,10 +192,10 @@
     <model name="cell_9_4">
       <static>true</static>
       <link name="link">
-        <pose>1.125000 2.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.800000 3.800000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -203,10 +203,10 @@
     <model name="cell_9_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 2.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 3.800000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -214,10 +214,10 @@
     <model name="cell_8_1">
       <static>true</static>
       <link name="link">
-        <pose>0.375000 2.125000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>0.600000 3.400000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -225,10 +225,10 @@
     <model name="cell_8_4">
       <static>true</static>
       <link name="link">
-        <pose>1.125000 2.125000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.800000 3.400000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -236,10 +236,10 @@
     <model name="cell_8_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 2.125000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 3.400000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -247,10 +247,10 @@
     <model name="cell_7_1">
       <static>true</static>
       <link name="link">
-        <pose>0.375000 1.875000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>0.600000 3.000000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -258,10 +258,10 @@
     <model name="cell_7_4">
       <static>true</static>
       <link name="link">
-        <pose>1.125000 1.875000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.800000 3.000000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -269,10 +269,10 @@
     <model name="cell_7_5">
       <static>true</static>
       <link name="link">
-        <pose>1.375000 1.875000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>2.200000 3.000000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -280,10 +280,10 @@
     <model name="cell_7_6">
       <static>true</static>
       <link name="link">
-        <pose>1.625000 1.875000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>2.600000 3.000000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -291,10 +291,10 @@
     <model name="cell_7_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 1.875000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 3.000000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -302,10 +302,10 @@
     <model name="cell_6_6">
       <static>true</static>
       <link name="link">
-        <pose>1.625000 1.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>2.600000 2.600000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -313,10 +313,10 @@
     <model name="cell_6_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 1.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 2.600000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -324,10 +324,10 @@
     <model name="cell_5_2">
       <static>true</static>
       <link name="link">
-        <pose>0.625000 1.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.000000 2.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -335,10 +335,10 @@
     <model name="cell_5_3">
       <static>true</static>
       <link name="link">
-        <pose>0.875000 1.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.400000 2.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -346,10 +346,10 @@
     <model name="cell_5_4">
       <static>true</static>
       <link name="link">
-        <pose>1.125000 1.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.800000 2.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -357,10 +357,10 @@
     <model name="cell_5_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 1.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 2.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -368,10 +368,10 @@
     <model name="cell_4_2">
       <static>true</static>
       <link name="link">
-        <pose>0.625000 1.125000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.000000 1.800000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -379,10 +379,10 @@
     <model name="cell_4_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 1.125000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 1.800000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -390,10 +390,10 @@
     <model name="cell_4_9">
       <static>true</static>
       <link name="link">
-        <pose>2.375000 1.125000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.800000 1.800000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -401,10 +401,10 @@
     <model name="cell_3_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 0.875000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 1.400000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -412,10 +412,10 @@
     <model name="cell_2_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 0.625000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 1.000000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -423,10 +423,10 @@
     <model name="cell_1_4">
       <static>true</static>
       <link name="link">
-        <pose>1.125000 0.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>1.800000 0.600000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -434,10 +434,10 @@
     <model name="cell_1_5">
       <static>true</static>
       <link name="link">
-        <pose>1.375000 0.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>2.200000 0.600000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -445,10 +445,10 @@
     <model name="cell_1_8">
       <static>true</static>
       <link name="link">
-        <pose>2.125000 0.375000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>3.400000 0.600000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
@@ -456,10 +456,10 @@
     <model name="cell_0_10">
       <static>true</static>
       <link name="link">
-        <pose>2.625000 0.125000 0.125000 0 0 0</pose>
-        <collision name="col"><geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry></collision>
+        <pose>4.200000 0.200000 0.125000 0 0 0</pose>
+        <collision name="col"><geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry></collision>
         <visual name="vis">
-          <geometry><box><size>0.250000 0.250000 0.250000</size></box></geometry>
+          <geometry><box><size>0.400000 0.400000 0.250000</size></box></geometry>
           <material><ambient>0.05 0.05 0.05 1</ambient><diffuse>0.05 0.05 0.05 1</diffuse></material>
         </visual>
       </link>
