@@ -1,4 +1,8 @@
 # Changelog
+- v0.0.0
+  첫번째 숫자: 대규모 업데이트
+  두번째 숫자: 기능 추가
+  세번재 숫자: 버그 수정
 
 ## [Unreleased]
 ### Added
@@ -9,6 +13,24 @@
 
 ### Fixed
 - 
+
+## [v1.2.0] - 2025-08-18
+### Added
+- slam_toolbox.yaml # slam parameter 파일 추가
+
+
+### Changed
+- 맵 격자 크기 변경 (기존 격자 크기: 25cm x 25cm >> 변경 격자 크기: 40cm x 40cm)
+  25cm는 너무 좁아서 터틀봇이 경로 지정하고 움직이기 힘들었음
+- src/tb3_lidar_explore/tb3_lidar_explore/frontier_explorer.py
+	src/tb3_sim_bundle/launch/sim_explore.launch.py
+	src/tb3_sim_bundle/nav2.yaml
+  주요 파일 수정 및 주석 추가
+  좁은 곳에서도 움직일 수 있게 수정
+  벽에 부딪히지 않게 최대한 조정 (아주 가끔 부딪힘)
+- 해상도 변경 (기존 해상도: 5cm, 변경 해상도: 1cm)
+### Usage
+-
 
 ## [v1.1.0] - 2025-08-17
 ### Added
