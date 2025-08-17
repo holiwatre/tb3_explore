@@ -45,6 +45,7 @@ ros2 launch tb3_sim_bundle gazebo_tb3.launch.py
   #추가로 격자 크기와 개수를 변경하고 싶다면 밑의 arguments를 뒤에 붙이면 됨
 
   --cell 0.4 # 격자 크기 40cm x 40cm
+  
   --cells 12 # 격자 개수 12개 x 12개
 
 
