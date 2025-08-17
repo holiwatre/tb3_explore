@@ -17,7 +17,7 @@
 - `maze_3x3.world` 생성 로직 리팩터링 및 월드 리라이트.
 ### Usage
 - maze_grid.txt 파일에서 '#' -> 구조물, '.' -> 빈공간
-- 원하는 미로 형식대로 구성 후
+- 원하는 미로 형식대로 구성 후 (왼쪽 밑이 0,0 좌표 / xy좌표계라 생각)
 - python3 make_maze_world.py --grid maze_3x3.world --out ~/tb3_explore/src/tb3_sim_bundle/worlds/maze_3x3.world
 
 - cd ~/tb3_explore
