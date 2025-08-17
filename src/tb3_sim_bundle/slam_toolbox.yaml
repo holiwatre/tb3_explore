@@ -1,0 +1,26 @@
+slam_toolbox:
+  ros__parameters:
+    use_sim_time: true
+    odom_frame: "odom"
+    map_frame: "map"
+    base_frame: "base_footprint"
+    scan_topic: "/scan"
+
+    # 1 cm 지도 (작은 미로 정밀 탐색용)
+    resolution: 0.01
+    transform_publish_period: 0.05
+    map_update_interval: 0.5
+    minimum_travel_distance: 0.02
+    minimum_travel_heading: 0.15
+    scan_subscriber_queue_size: 1000
+    throttle_scans: 1
+
+    # 루프클로징 활성화
+    max_laser_range: 3.5
+    use_scan_matching: true
+    use_scan_barycenter: false
+    do_loop_closing: true
+    loop_search_maximum_distance: 3.0
+    loop_match_minimum_chain_size: 10
+    loop_match_maximum_variance_coarse: 3.0
+    loop_match_maximum_variance_fine: 0.5
