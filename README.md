@@ -30,3 +30,24 @@ ros2 launch tb3_sim_bundle sim_explore.launch.py
 
 ## Run (Gazebo + TurtleBot3 only)
 ros2 launch tb3_sim_bundle gazebo_tb3.launch.py
+
+
+
+## 텍스트 그리드(`maze_grid.txt`)로 Gazebo world를 자동 생성하는 스크립트 `make_maze_world.py`.
+### Usage
+- maze_grid.txt 파일에서 '#' -> 구조물, '.' -> 빈공간
+- 원하는 미로 형식대로 구성 후 (왼쪽 밑이 0,0 좌표 / xy좌표계라 생각)
+
+- cd ~/tb3_explore
+- sudo chown -R "$USER":"$USER" ~/tb3_explore ## 권한 부여
+- python3 make_maze_world.py --grid maze_grid.txt --out ~/tb3_explore/src/tb3_sim_bundle/worlds/maze_3x3.world
+
+  #추가로 격자 크기와 개수를 변경하고 싶다면 밑의 arguments를 뒤에 붙이면 됨
+
+  --cell 0.4 # 격자 크기 40cm x 40cm
+  --cells 12 # 격자 개수 12개 x 12개
+
+
+- cd ~/tb3_explore
+- colcon build --symlink-install --merge-install
+- source install/setup.bash
