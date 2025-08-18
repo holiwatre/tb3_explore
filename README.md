@@ -32,6 +32,8 @@ ros2 launch tb3_sim_bundle sim_explore.launch.py
 ros2 launch tb3_sim_bundle gazebo_tb3.launch.py
 
 
+## localization (current location echo)
+ros2 run tf2_ros tf2_echo map base_link
 
 ## 텍스트 그리드(`maze_grid.txt`)로 Gazebo world를 자동 생성하는 스크립트 `make_maze_world.py`.
 ### Usage
