@@ -36,6 +36,15 @@ def generate_launch_description():
       <publish_odom>true</publish_odom>
       <publish_odom_tf>true</publish_odom_tf>
     </plugin>
+
+    <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+      <ros>
+        <remapping>~/out:=/joint_states</remapping>
+      </ros>
+      <update_rate>50</update_rate>
+      <joint_name>wheel_left_joint</joint_name>
+      <joint_name>wheel_right_joint</joint_name>
+    </plugin>    
   </gazebo>
 
   <gazebo reference="base_scan">
