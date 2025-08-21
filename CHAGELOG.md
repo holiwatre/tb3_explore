@@ -17,6 +17,21 @@
 ### Fixed
 - 
 
+## [v1.3.0] - 2025-08-21
+### Added
+
+### Changed
+- frontier_explorer.py 수정
+
+  costmap 안에 골 좌표 안 던지게 수정 및 자잘한 수정
+- spawn_tb3.launch.py 수정
+
+  wheel base link 추가
+- 
+### Usage
+- rviz에서 received goal plan 추가하면 실시간 경로계획 시각화 가능
+
+
 ## [v1.2.0] - 2025-08-18
 ### Added
 - slam_toolbox.yaml # slam parameter 파일 추가
