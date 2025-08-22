@@ -1,26 +1,84 @@
+# slam_toolbox:
+#   ros__parameters:
+#     use_sim_time: true
+#     odom_frame: "odom"
+#     map_frame: "map"
+#     base_frame: "base_footprint"
+#     scan_topic: "/scan"
+
+#     # 1 cm 지도 (작은 미로 정밀 탐색용)
+#     resolution: 0.01
+#     transform_publish_period: 0.05
+#     map_update_interval: 0.5
+#     minimum_travel_distance: 0.02
+#     minimum_travel_heading: 0.15
+#     scan_subscriber_queue_size: 1000
+#     throttle_scans: 1
+
+#     # 루프클로징 활성화
+#     max_laser_range: 2.5 # 3.5
+#     use_scan_matching: true
+#     use_scan_barycenter: false
+#     do_loop_closing: true
+#     loop_search_maximum_distance: 3.0 
+#     loop_match_minimum_chain_size: 10
+#     loop_match_maximum_variance_coarse: 3.0
+#     loop_match_maximum_variance_fine: 0.5
+
+
+# 4.8m x 4.8m 정사각형 맵에 최적화된 전체 slam_toolbox.yaml 설정
+
 slam_toolbox:
   ros__parameters:
-    use_sim_time: true
+    # --- 솔버(Solver) 설정 ---
+    # 복잡한 최적화 계산을 수행하는 라이브러리 설정입니다. 일반적으로 변경할 필요가 없습니다.
+    solver_plugin: "solver_plugins::CeresSolver"
+    ceres_linear_solver: "SPARSE_NORMAL_CHOLESKY"
+    ceres_preconditioner: "SCHUR_JACOBI"
+    ceres_trust_region_strategy: "LEVENBERG_MARQUARDT"
+    ceres_dogleg_type: "TRADITIONAL_DOGLEG"
+    ceres_loss_function: "None"
+
+    # --- TF 프레임 및 토픽 이름 설정 ---
     odom_frame: "odom"
     map_frame: "map"
     base_frame: "base_footprint"
     scan_topic: "/scan"
-
-    # 1 cm 지도 (작은 미로 정밀 탐색용)
-    resolution: 0.01
-    transform_publish_period: 0.05
-    map_update_interval: 0.5
-    minimum_travel_distance: 0.02
-    minimum_travel_heading: 0.15
-    scan_subscriber_queue_size: 1000
-    throttle_scans: 1
-
-    # 루프클로징 활성화
-    max_laser_range: 3.5
+    
+    # --- 지도 및 발행 주기 설정 ---
     use_scan_matching: true
-    use_scan_barycenter: false
+    minimum_travel_distance: 0.02
+    use_scan_barycenter: true
+    minimum_time_interval: 0.0
+    transform_publish_period: 0.02       # TF 발행 주기 (초). 0.02는 50Hz.
+    map_update_interval: 1.0           # ✅ 지도 업데이트 주기 (초). 작은 맵이므로 자주 업데이트하여 정밀도 향상.
+
+    # --- 지도 해상도 및 센서 거리 설정 (매우 중요) ---
+    resolution: 0.01                   # 지도의 해상도 (미터/픽셀). 1cm.
+    max_laser_range: 3.45              # ✅ Lidar 최대 측정 거리(3.5m)보다 약간 작게 설정하여 노이즈 감소.
+    scan_minimum_range: 0.12           # ✅ Lidar 최소 측정 거리에 맞게 설정.
+    
+    # --- 스캔 매칭 파라미터 ---
+    # 현재 스캔과 바로 이전 스캔을 비교하여 로봇의 미세한 움직임을 추정하는 설정입니다.
+    correlation_search_space_dimension: 0.3
+    correlation_search_space_resolution: 0.01
+    correlation_search_space_smear_deviation: 0.1
+    
+    # --- 루프 클로저(Loop Closure) 파라미터 (핵심 튜닝) ---
+    # 과거에 방문했던 장소와 현재 장소를 비교하여 지도의 오차를 크게 보정하는 설정입니다.
     do_loop_closing: true
-    loop_search_maximum_distance: 3.0
-    loop_match_minimum_chain_size: 10
-    loop_match_maximum_variance_coarse: 3.0
-    loop_match_maximum_variance_fine: 0.5
+    loop_search_maximum_distance: 4.0      # ✅ 맵이 작으므로 루프 탐색 최대 거리를 줄여서(4m) 잘못된 매칭 방지.
+    loop_match_minimum_response_fine: 0.9  # ✅ 루프 클로저 신뢰도 기준을 90%로 높여 더 확실할 때만 맵 보정.
+    loop_search_space_dimension: 6.0
+    loop_search_space_resolution: 0.05
+    loop_search_space_smear_deviation: 0.03
+    
+    # --- 스캔 버퍼(Scan Buffer) 설정 ---
+    # 루프 클로저 등을 위해 과거의 스캔 데이터를 얼마나 저장할지 결정합니다.
+    scan_buffer_size: 30
+    scan_buffer_maximum_scan_distance: 10.0
+    
+    # --- 기타 패널티 설정 ---
+    # 스캔 매칭 시 거리 및 각도 오차에 대한 가중치입니다.
+    distance_variance_penalty: 0.5
+    angle_variance_penalty: 1.0

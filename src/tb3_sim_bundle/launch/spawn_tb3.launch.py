@@ -1,3 +1,10 @@
+#diff_drive 플러그인의 <publish_odom_tf>를 false로 변경했습니다. odom → base_footprint TF는 이제 robot_localization이 담당합니다.
+
+
+
+
+
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.substitutions import LaunchConfiguration
@@ -34,9 +41,9 @@ def generate_launch_description():
       <odom_frame>odom</odom_frame>
       <base_frame>base_footprint</base_frame>
       <publish_odom>true</publish_odom>
-      <publish_odom_tf>true</publish_odom_tf>
-    </plugin>
-
+      <publish_odom_tf>false</publish_odom_tf>
+    </plugin>   
+    
     <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
       <ros>
         <remapping>~/out:=/joint_states</remapping>
@@ -44,7 +51,78 @@ def generate_launch_description():
       <update_rate>50</update_rate>
       <joint_name>wheel_left_joint</joint_name>
       <joint_name>wheel_right_joint</joint_name>
-    </plugin>    
+    </plugin>   
+    
+  </gazebo>
+  
+  
+  <gazebo reference="imu_link">
+    <sensor name="imu" type="imu">
+      <always_on>true</always_on>
+      <update_rate>100</update_rate>
+      <visualize>false</visualize>
+      <imu>
+        <angular_velocity>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0</bias_mean>
+              <bias_stddev>0.000008</bias_stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0</bias_mean>
+              <bias_stddev>0.000008</bias_stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>2e-4</stddev>
+              <bias_mean>0.0</bias_mean>
+              <bias_stddev>0.000008</bias_stddev>
+            </noise>
+          </z>
+        </angular_velocity>
+        <linear_acceleration>
+          <x>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </noise>
+          </x>
+          <y>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </noise>
+          </y>
+          <z>
+            <noise type="gaussian">
+              <mean>0.0</mean>
+              <stddev>1.7e-2</stddev>
+              <bias_mean>0.1</bias_mean>
+              <bias_stddev>0.001</bias_stddev>
+            </noise>
+          </z>
+        </linear_acceleration>
+      </imu>
+      <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <namespace>/</namespace>
+          <remapping>~/out:=imu</remapping>
+        </ros>
+        <initial_orientation_as_reference>false</initial_orientation_as_reference>
+      </plugin>
+    </sensor>
   </gazebo>
 
   <gazebo reference="base_scan">
@@ -97,3 +175,19 @@ def generate_launch_description():
             arguments=['-entity', 'tb3', '-topic', 'robot_description', '-x', '0.5', '-y', '0.5', '-z', '0.05'],
         ),
     ])
+    
+    
+#  <gazebo reference="imu_link">
+#     <sensor name="imu" type="imu">
+#       <always_on>true</always_on>
+#       <update_rate>100</update_rate>
+#       <visualize>false</visualize>
+#       <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+#         <ros>
+#           <namespace>/</namespace>
+#           <remapping>~/out:=imu</remapping>
+#         </ros>
+#         <initial_orientation_as_reference>false</initial_orientation_as_reference>
+#       </plugin>
+#     </sensor>
+#   </gazebo>
