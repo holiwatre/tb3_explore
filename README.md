@@ -9,6 +9,8 @@ sudo apt install ros-humble-gazebo-ros-pkgs
 
 sudo apt install ros-humble-gazebo-ros
 
+sudo apt install ros-humble-robot-localization
+
 ## Build
 colcon build --symlink-install --merge-install
 
