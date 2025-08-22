@@ -1,0 +1,40 @@
+# ekf.yaml: robot_localization EKF 설정
+ekf_filter_node:
+  ros__parameters:
+    frequency: 50.0  # 필터 업데이트 주기 (Hz)
+    sensor_timeout: 0.1
+    two_d_mode: true # 2D 평면에서 움직이므로 true로 설정
+
+    # 프레임 설정
+    odom_frame: odom
+    base_link_frame: base_footprint
+    world_frame: odom
+
+    # --- 입력 센서 설정 ---
+    # [1] 휠 오도메트리 (/odom)
+    odom0: /odom
+    odom0_config:
+      [true,  true,  false, # x, y, z
+       false, false, false, # roll, pitch, yaw
+       true,  true,  false, # vx, vy, vz
+       false, false, true,  # vroll, vpitch, vyaw
+       false, false, false]
+    odom0_differential: false
+
+    # [2] IMU (/imu)
+    imu0: /imu
+    imu0_config:
+      [false, false, false, # x, y, z
+       false, false, true,  # roll, pitch, yaw
+       false, false, false, # vx, vy, vz
+       false, false, true,  # vroll, vpitch, vyaw
+       false, false, false]
+    imu0_differential: false
+    imu0_remove_gravitational_acceleration: true
+
+    # --- 출력 설정 ---
+    publish_tf: true
+    
+    # --- 필터링된 오도메트리 토픽명 ---
+    # 기본값은 /odometry/filtered 이지만, 관습적으로 /odom/filtered를 사용하기도 합니다.
+    # 여기서는 Nav2/SLAM과 연동 편의를 위해 기본값을 사용합니다.

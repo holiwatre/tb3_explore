@@ -31,7 +31,7 @@ controller_server:
       transform_tolerance: 0.2          # TF 지연 허용(초)
       desired_linear_vel: 0.18          # 평상시 선속도. 좁은 복도 안전 주행을 위해 낮춤
       min_approach_linear_velocity: 0.0 # 목표 근처에서 완전 정지 허용(밀착 주기 방지)
-      lookahead_dist: 0.20              # 기본 룩어헤드(20cm). 좁은 곳에서 과도한 곡선 추종 방지
+      lookahead_dist: 0.15              # 기본 룩어헤드(20cm). 좁은 곳에서 과도한 곡선 추종 방지
       min_lookahead_dist: 0.12          # 최소 룩어헤드(12cm)
       max_lookahead_dist: 0.26          # 최대 룩어헤드(26cm) — 급커브 억제
       use_velocity_scaled_lookahead_dist: false  # 속도에 따라 룩어헤드 가변 사용 안 함(응답성 예측 가능)
@@ -118,7 +118,7 @@ global_costmap:
       track_unknown_space: true
       always_send_full_costmap: true
       robot_radius: 0.11             # TB3 본체 반径(대략). footprint 없으면 원형 발자국으로 사용
-      footprint_padding: 0.04        # 계획 시 안전 여유. inscribed ≈ 0.11 + 0.04 = 0.15m
+      footprint_padding: 0.03        # 계획 시 안전 여유. inscribed ≈ 0.11 + 0.04 = 0.15m
       plugins:
         - static_layer
         - inflation_layer
@@ -130,9 +130,9 @@ global_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: true
-        inflation_radius: 0.15       # 전역 인플레이션 반径(계획 안전 여유)
+        inflation_radius: 0.16       # 전역 인플레이션 반径(계획 안전 여유)
                                      # ⚠ inscribed(≈0.15) 이상으로 유지해야 충돌 경로 방지
-        cost_scaling_factor: 8.0     # 장애물 근처 비용 기울기(큼→급격히 상승, 경계 더 타이트)
+        cost_scaling_factor: 3.0     # 장애물 근처 비용 기울기(큼→급격히 상승, 경계 더 타이트)
 
 # ===== Local Costmap =====
 local_costmap:
@@ -146,7 +146,7 @@ local_costmap:
       height: 3
       resolution: 0.01               # 로컬도 1cm/pix — 협소 공간에서 충돌 판정 정밀
       robot_radius: 0.11
-      footprint_padding: 0.01        # 로컬 충돌 여유(전역보다 작게 설정: 붙어서 지나가도 OK)
+      footprint_padding: 0.03        # 로컬 충돌 여유(전역보다 작게 설정: 붙어서 지나가도 OK)
                                      # 너무 작으면 실제 충돌 가능 → 좁은 복도만 아니면 0.02~0.03 권장
       plugins:
         - obstacle_layer
@@ -167,8 +167,8 @@ local_costmap:
       inflation_layer:
         plugin: "nav2_costmap_2d::InflationLayer"
         enabled: true
-        inflation_radius: 0.15       # 로컬 인플레이션 — 전역과 동일(안전 마진 일관성)
-        cost_scaling_factor: 2.5     # 로컬은 완만한 기울기(부드럽게 가장자리 추종)
+        inflation_radius: 0.16       # 로컬 인플레이션 — 전역과 동일(안전 마진 일관성)
+        cost_scaling_factor: 1.8     # 로컬은 완만한 기울기(부드럽게 가장자리 추종)
 
 lifecycle_manager:
   ros__parameters:
