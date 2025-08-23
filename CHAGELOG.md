@@ -17,6 +17,16 @@
 ### Fixed
 - 
 
+## [v1.5.0] - 2025-08-23
+### Added
+- rviz에서 프런티어 군집 시각화
+
+### Changed
+-
+
+### Usage
+- rviz에서 Add - by topic - marker array 추가하면 프런티어 계산된 군집 시각화 가능
+
 ## [v1.4.0] - 2025-08-22
 ### Added
 - localization 패키지 추가
