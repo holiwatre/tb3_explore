@@ -13,6 +13,12 @@
 # 그리고 좁은 지역(복도)에서는 곡선 경로 생성이 어려울 수도 있고 cost area 내부로 프런티어 목표가 생성되지 않도록 하는 코드를 추가할 계획!
 # ---------------------------------------------------------------------------
 
+# 프런티어 군집 시각화-------------------------------------------
+from visualization_msgs.msg import Marker, MarkerArray
+from geometry_msgs.msg import Point
+from std_msgs.msg import ColorRGBA
+# -----------------------------------------------------------
+
 import math
 import time
 from collections import deque
@@ -114,6 +120,18 @@ class FrontierExplorer(Node):
         self.timer = self.create_timer(0.5, self.tick)
 
         self.get_logger().info('frontier_explorer started.')
+
+        # 프런티어 군집 시각화 ---------------------------------------------------------------
+        # RViz markers
+        self.frontier_marker_pub = self.create_publisher(MarkerArray, '/frontier_markers', 1)
+
+        # Visualization params (원하면 런치/CLI로 오버라이드)
+        self.declare_parameter('viz_lifetime', 3.0)       # 초
+        self.declare_parameter('viz_point_scale', 0.7)    # 셀 해상도에 대한 배수(프런티어 점 크기)
+        self.declare_parameter('viz_center_scale', 1.2)   # 중심점 구체 크기 배수
+        self.declare_parameter('viz_line_width', 0.02)    # 로봇→목표 라인 두께(미터)
+        self.declare_parameter('viz_text_size', 0.1)      # 라벨 폰트 크기(미터)
+        # ----------------------------------------------------------------------------------
        
 
     # ======================================================================
@@ -226,6 +244,186 @@ class FrontierExplorer(Node):
             self.last_send_time = time.time()
 
         send_future.add_done_callback(_goal_response)
+
+    # 프런티어 군집 시각화 ------------------------------------------------------------
+    def _palette(self, i: int) -> ColorRGBA:
+        """클러스터 인덱스로부터 보기 좋은 고정 팔레트 색상을 만들어줍니다."""
+        # 간단한 해시 팔레트 (HSV 대용)
+        r = (37 * (i + 1)) % 255 / 255.0
+        g = (91 * (i + 1)) % 255 / 255.0
+        b = (171 * (i + 1)) % 255 / 255.0
+        return ColorRGBA(r=r, g=g, b=b, a=1.0)
+
+    def publish_frontier_markers(self,
+                                clusters: List[List[Tuple[int,int]]],
+                                selected_cluster: Optional[List[Tuple[int,int]]],
+                                target_world: Optional[Tuple[float,float]],
+                                occ: OccupancyGrid,
+                                robot_xy: Optional[Tuple[float,float]]):
+        """프런티어 점/클러스터/중심/목표/로봇→목표 라인/라벨을 RViz에 표시."""
+        arr = MarkerArray()
+
+        # DELETEALL로 이전 프레임 마커 정리
+        m_clear = Marker()
+        m_clear.header.frame_id = 'map'
+        m_clear.action = Marker.DELETEALL
+        arr.markers.append(m_clear)
+
+        res = occ.info.resolution
+        ox  = occ.info.origin.position.x
+        oy  = occ.info.origin.position.y
+
+        lifetime = Duration(seconds=float(self.get_parameter('viz_lifetime').value)).to_msg()
+        point_scale = max(res * float(self.get_parameter('viz_point_scale').value), res * 0.5)
+        center_scale = max(res * float(self.get_parameter('viz_center_scale').value), res * 0.9)
+        line_width = float(self.get_parameter('viz_line_width').value)
+        text_size = float(self.get_parameter('viz_text_size').value)
+
+        # ---------- 1) 모든 프런티어 점 (클러스터별 다른 색) ----------
+        for i, cluster in enumerate(clusters):
+            pts_marker = Marker()
+            pts_marker.header.frame_id = 'map'
+            pts_marker.ns = 'frontier/points'
+            pts_marker.id = i
+            pts_marker.type = Marker.POINTS
+            pts_marker.action = Marker.ADD
+            pts_marker.pose.orientation.w = 1.0
+            pts_marker.scale.x = point_scale
+            pts_marker.scale.y = point_scale
+            pts_marker.color = self._palette(i)
+            pts_marker.lifetime = lifetime
+
+            pts: List[Point] = []
+            for (x, y) in cluster:
+                wx = ox + (x + 0.5) * res
+                wy = oy + (y + 0.5) * res
+                pts.append(Point(x=wx, y=wy, z=0.02))
+            pts_marker.points = pts
+            arr.markers.append(pts_marker)
+
+        # ---------- 2) 각 클러스터 중심점 (작은 구체) + 라벨 ----------
+        center_id_base = 1000
+        label_id_base  = 2000
+        for i, cluster in enumerate(clusters):
+            cx = sum(p[0] for p in cluster) / len(cluster)
+            cy = sum(p[1] for p in cluster) / len(cluster)
+            cwx = ox + (cx + 0.5) * res
+            cwy = oy + (cy + 0.5) * res
+
+            center_m = Marker()
+            center_m.header.frame_id = 'map'
+            center_m.ns = 'frontier/centers'
+            center_m.id = center_id_base + i
+            center_m.type = Marker.SPHERE
+            center_m.action = Marker.ADD
+            center_m.pose.position.x = cwx
+            center_m.pose.position.y = cwy
+            center_m.pose.position.z = 0.06
+            center_m.pose.orientation.w = 1.0
+            center_m.scale.x = center_scale
+            center_m.scale.y = center_scale
+            center_m.scale.z = center_scale
+            # 중심은 같은 색의 살짝 투명
+            color = self._palette(i)
+            center_m.color = ColorRGBA(r=color.r, g=color.g, b=color.b, a=0.9)
+            center_m.lifetime = lifetime
+            arr.markers.append(center_m)
+
+            # 텍스트 라벨: "#i (N pts)"
+            text_m = Marker()
+            text_m.header.frame_id = 'map'
+            text_m.ns = 'frontier/labels'
+            text_m.id = label_id_base + i
+            text_m.type = Marker.TEXT_VIEW_FACING
+            text_m.action = Marker.ADD
+            text_m.pose.position.x = cwx
+            text_m.pose.position.y = cwy
+            text_m.pose.position.z = 0.20
+            text_m.pose.orientation.w = 1.0
+            text_m.scale.z = text_size
+            text_m.color = ColorRGBA(r=1.0, g=1.0, b=1.0, a=0.95)
+            text_m.text = f"#{i} ({len(cluster)})"
+            text_m.lifetime = lifetime
+            arr.markers.append(text_m)
+
+        # ---------- 3) 선택된 클러스터 강조 (굵은 노란 점) ----------
+        if selected_cluster:
+            sel_m = Marker()
+            sel_m.header.frame_id = 'map'
+            sel_m.ns = 'frontier/selected'
+            sel_m.id = 999000
+            sel_m.type = Marker.POINTS
+            sel_m.action = Marker.ADD
+            sel_m.pose.orientation.w = 1.0
+            sel_m.scale.x = point_scale * 1.6
+            sel_m.scale.y = point_scale * 1.6
+            sel_m.color = ColorRGBA(r=1.0, g=0.9, b=0.2, a=1.0)  # 노란색 하이라이트
+            sel_m.lifetime = lifetime
+            sel_pts: List[Point] = []
+            for (x, y) in selected_cluster:
+                wx = ox + (x + 0.5) * res
+                wy = oy + (y + 0.5) * res
+                sel_pts.append(Point(x=wx, y=wy, z=0.03))
+            sel_m.points = sel_pts
+            arr.markers.append(sel_m)
+
+        # ---------- 4) 목표점(초록 구체) + "GOAL" 라벨 ----------
+        if target_world is not None:
+            gx, gy = target_world
+
+            goal_m = Marker()
+            goal_m.header.frame_id = 'map'
+            goal_m.ns = 'frontier/goal'
+            goal_m.id = 1000000
+            goal_m.type = Marker.SPHERE
+            goal_m.action = Marker.ADD
+            goal_m.pose.position.x = gx
+            goal_m.pose.position.y = gy
+            goal_m.pose.position.z = 0.05
+            goal_m.pose.orientation.w = 1.0
+            s = max(res * 3.0, 0.03)
+            goal_m.scale.x = s
+            goal_m.scale.y = s
+            goal_m.scale.z = s
+            goal_m.color = ColorRGBA(r=0.1, g=0.95, b=0.2, a=1.0)
+            goal_m.lifetime = lifetime
+            arr.markers.append(goal_m)
+
+            goal_text = Marker()
+            goal_text.header.frame_id = 'map'
+            goal_text.ns = 'frontier/goal_label'
+            goal_text.id = 1000001
+            goal_text.type = Marker.TEXT_VIEW_FACING
+            goal_text.action = Marker.ADD
+            goal_text.pose.position.x = gx
+            goal_text.pose.position.y = gy
+            goal_text.pose.position.z = 0.22
+            goal_text.pose.orientation.w = 1.0
+            goal_text.scale.z = text_size
+            goal_text.color = ColorRGBA(r=0.2, g=1.0, b=0.2, a=0.95)
+            goal_text.text = "GOAL"
+            goal_text.lifetime = lifetime
+            arr.markers.append(goal_text)
+
+            # ---------- 5) 로봇→목표 라인 ----------
+            if robot_xy is not None:
+                rx, ry = robot_xy
+                line = Marker()
+                line.header.frame_id = 'map'
+                line.ns = 'frontier/line_to_goal'
+                line.id = 1100000
+                line.type = Marker.LINE_STRIP
+                line.action = Marker.ADD
+                line.pose.orientation.w = 1.0
+                line.scale.x = line_width
+                line.color = ColorRGBA(r=0.2, g=0.6, b=1.0, a=0.9)
+                line.lifetime = lifetime
+                line.points = [Point(x=rx, y=ry, z=0.03), Point(x=gx, y=gy, z=0.03)]
+                arr.markers.append(line)
+
+        # 발행
+        self.frontier_marker_pub.publish(arr)
+    # ---------------------------------------------------------------------------
 
     # ======================================================================
     # 프런티어 탐색 로직(주기 실행)
@@ -462,6 +660,41 @@ class FrontierExplorer(Node):
         # 계산한 안전 목표로 이동
         self.send_goal(goal_wx, goal_wy) # nav2 : action server에 goal 좌표던져줌!
         # 핵심은 프런티어 군집을 잘 찾아서 다음 목표지점을 던져주는 거니깐....
+
+
+        # 프런티어 군집 시각화 -------------------------------------------------
+        target_world = None
+        pullback = int(self.get_parameter('pullback_cells').value)
+
+        selected_cluster = None  # <<< 추가: 선택된 클러스터 저장용
+
+        for cluster in clusters:
+            # ... (중략) ...
+            if not found:
+                continue
+            # ... (pullback, 안전성 검사 등 기존 로직) ...
+
+            wx = ox + (tx + 0.5) * res
+            wy = oy + (ty + 0.5) * res
+            target_world = (wx, wy)
+            selected_cluster = cluster             # <<< 추가: 선택된 클러스터 기록
+            break
+
+        # (target_world None 처리 전이라도) 시각화는 항상 업데이트
+        robot_xy = (rx, ry)
+        self.publish_frontier_markers(
+            clusters=clusters,
+            selected_cluster=selected_cluster,
+            target_world=target_world,
+            occ=occ,
+            robot_xy=robot_xy
+        )
+
+        if target_world is None:
+            self.get_logger().info('Could not find a safe free target near frontier.')
+            return
+        #-----------------------------------------------------------------------
+
 
 
 def main(args=None):
