@@ -2,7 +2,7 @@
 v1.3.0 구동 영상
 https://youtu.be/nfYJaGYwewA
 
-최신 release v1.4.0
+최신 release v1.5.0
 
 ## Requirements
 sudo apt install ros-humble-gazebo-ros-pkgs
