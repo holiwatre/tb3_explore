@@ -5,6 +5,11 @@ https://youtu.be/nfYJaGYwewA
 최신 release v1.5.0
 
 ## Requirements
+
+sudo apt install ros-humble-navigation2
+
+sudo apt install ros-humble-nav2-bringup
+
 sudo apt install ros-humble-gazebo-ros-pkgs
 
 sudo apt install ros-humble-gazebo-ros
