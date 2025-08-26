@@ -5,6 +5,9 @@ https://youtu.be/nfYJaGYwewA
 최신 release v1.5.0
 
 ## Requirements
+https://docs.ros.org/en/humble/Installation/Ubuntu-Install-Debs.html#install-ros-2-packages (ros2 humble installation)
+
+https://emanual.robotis.com/docs/en/platform/turtlebot3/quick-start/#pc-setup (turtlebot3 emmanual - Quick start guide)
 
 sudo apt install ros-humble-navigation2
 
