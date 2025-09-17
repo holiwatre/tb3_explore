@@ -1,6 +1,7 @@
 # tb3_explore (ROS 2 Humble)
-v1.3.0 구동 영상
-https://youtu.be/nfYJaGYwewA
+v1.5.0 구동 영상
+
+https://youtu.be/t4yUC8YL9CE
 
 최신 release v1.5.0
 
